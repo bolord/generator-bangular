@@ -32,6 +32,8 @@ exports.create = function (req, res) {
       config.secrets.session,
       { expiresInMinutes: 60 * 5 }
     );
+    delete user.passwordHash;
+    delete user.salt;
     res.status(201).json({ token: token, user: user });
   });
 };
